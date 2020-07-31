@@ -29,5 +29,6 @@ RUN apt-get clean \
     
 WORKDIR /
 COPY extractSplitReads_BwaMem /usr/local/bin/extractSplitReads_BwaMem
+RUN chmod 755 /usr/local/bin/extractSplitReads_BwaMem
 
 CMD ["samtools"]
