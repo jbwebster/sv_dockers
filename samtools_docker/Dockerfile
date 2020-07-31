@@ -28,6 +28,6 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
 WORKDIR /
-COPY extractSplitReads_BwaMem /usr/bin/extractSplitReads_BwaMem
+COPY extractSplitReads_BwaMem /usr/local/bin/extractSplitReads_BwaMem
 
 CMD ["samtools"]
