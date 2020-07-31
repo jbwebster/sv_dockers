@@ -9,7 +9,8 @@ RUN apt-get update \
         bzip2 \
         curl \
         zlib1g-dev \
-        libncurses5-dev
+        libncurses5-dev \
+        python3.5
 
 ENV SAMTOOLS_V 1.3.1
 
