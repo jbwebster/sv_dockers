@@ -147,7 +147,7 @@ def modifyLumpy(line):
 	return call	
 
 def modifyManta(line, has_format):
-	if has_format:
+	if has_format: # Shouldn't end up getting used
 		# Copies PR field to DV field
 		# PR = Spanning paired-red support for the ref and alt alleles
 		fields = line.split("\t")
@@ -161,7 +161,7 @@ def modifyManta(line, has_format):
 			fields[i] = ":".join(sample_items)
 		call = "\t".join(fields)
 		call += "\n"
-	else:
+	else: 
 		# Uses PAIR_COUNT as DV
 		# PAIR_COUNT = read pairs supporting this variant where both reads are confidentally mapped
 		# Not sure that the colon is required by VCF format, but SURVIVOR expects to see a colon either on the right or the left of the FORMAT options, so I've included it in the format and in the sample info
@@ -220,12 +220,11 @@ def prepareFile(filename):
 					data.append(call)
 				# Manta calls
 				elif len(line) > 1:	
-					#has_format = True for manta_SomaticSVs, False for CandidateSVs
 					call = modifyManta(line, has_format)
-				#	data.append(call)
+					data.append(call)
 				else:
 					#continue
-					data.append(line)
+					data.append(line) # Shouldn't ever be used
 			counter += 1
 	vcf.close()
 
