@@ -54,6 +54,11 @@ def validateAlt(line):
 			fields = line.split("\t")
 			fields[4] = "<" + svtype + ">"
 			line = "\t".join(fields)
+		elif "DUP" in line: # For the rare case where Manta calls something both an insertion and a duplication
+			fields = line.split("\t")
+			fields[4] = "<DUP>"
+			line = "\t".join(fields)
+			line = re.sub("SVTYPE=[A-Za-z]+", "SVTYPE=DUP", line) # Change svtype from INS to DUP
 		return line
 	except:
 		return line
