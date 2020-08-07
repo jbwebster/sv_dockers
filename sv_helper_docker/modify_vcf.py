@@ -263,7 +263,7 @@ def main(args):
 		outfile_name = out_dir + "/" + str(i) + ".mod.vcf"
 		with open(outfile_name, "w") as f:
 			for row in data:
-				f.write(row)
+				f.write(row.strip() + "\n")
 		f.close()
 		
 
