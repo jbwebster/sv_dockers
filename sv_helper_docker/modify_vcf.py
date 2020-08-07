@@ -231,9 +231,9 @@ def prepareFile(filename):
 	# Add/Modify necessary header lines
 	if not has_format: # Only on manta CandidateSVs
 		header = data[final_header_line]
-		header.strip()
-		header += "\tFORMAT\t" + filename + "\n"
-		data[final_header_line] = header
+		header_mod = header.strip()
+		header_mod += "\tFORMAT\t" + filename + "\n"
+		data[final_header_line] = header_mod
 	if not has_DV:
 		dv = '##FORMAT=<ID=DV,Number=1,Type=Integer,Description="# high-quality variant pairs">\n'
 		data.insert(final_header_line - 1, dv)
