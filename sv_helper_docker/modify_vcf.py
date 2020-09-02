@@ -124,7 +124,6 @@ def splitOneLineBND(line):
 	call2 = dictToCall(call2_data)
 	return call1, call2
 
-# NEVER CALLED
 def modifyGT(line):
 	"""
 	Convert all GT to 0/1. This value is relcalculated later in the pipeline, and
@@ -151,7 +150,7 @@ def modifyLumpy(line):
 	the SU value into the DV solves our problem - and isn't really used downstream anyway.
 	Modify GT value. We recalculate it anyway, and it has a habit of preventing SURVIVOR from identifying consensus calls..
 	"""
-	#line = modifyGT(line) 
+	line = modifyGT(line) 
 	fields = line.split("\t")
 	fields[8] += ":DV"
 	format_field = fields[8].split(":")
@@ -227,7 +226,7 @@ def prepareFile(filename):
 				# Only prep for Delly is to split BND calls into 2 different calls, rather than keeping them in their 1-line format
 				if "DELLY" in line:
 					is_delly = True
-					#line = modifyGT(line)
+					line = modifyGT(line)
 					if "SVTYPE=BND" in line and "MATEID=" not in line:
 						call1, call2 = splitOneLineBND(line)
 						data.append(call1)
