@@ -9,6 +9,7 @@ RUN apt-get update -qq && apt-get -y install \
   curl \
   make \
   python \
+  sed \
   bzip2 \
   zlib1g-dev \
   ca-certificates \
@@ -17,6 +18,7 @@ RUN apt-get update -qq && apt-get -y install \
 RUN curl -O -L https://github.com/Illumina/manta/releases/download/v$manta_v/manta-$manta_v.release_src.tar.bz2 \
   && tar -xjf manta-$manta_v.release_src.tar.bz2 \
   && rm -rf manta-$manta_v.release_src.tar.bz2 \
+  && sed -i 's/MAX_QSCORE = 70,/MAX_QSCORE = 100,/g' manta-$manta_v.release_src/src/c++/lib/blt_util/qscore_cache.hh \
   && mkdir build \ 
   && cd build \
   && mkdir -p /usr/bin/manta \
